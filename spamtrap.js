@@ -168,3 +168,7 @@ irc.on("close", connectIRC);
 irc.on("error", console.error);
 
 connectIRC();
+
+setInterval(_ =>
+  irc.write("PING :" + Date.now() + "\r\n")
+, 1000 * 30);
