@@ -131,7 +131,7 @@ irc.ban = (nick, host) => {
   const date = Math.floor(Date.now() / 1000);
   console.log("----", "G-Lining", nick, "from", host);
   irc.write(`GLINE *!*@${host} 99999999 :${config.killreason}\r\n`);
-  irc.write(`KILL ${nick}\r\n`);
+  irc.write(`KILL ${nick} :${config.killreason}\r\n`);
   db.prepare("INSERT OR IGNORE INTO bots VALUES (?, ?, ?);")
     .run(nick, host, date);
 }
