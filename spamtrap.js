@@ -23,10 +23,11 @@ const config = {
   ],
 
   // How many trap channels?
-  trapchans: 100
+  trapchans: 100,
 
   // The *-Line reason.
-  killreason: "Spam bot detected. If this was a mistake, contact to support@example.com"
+  killreason: "Spam bot detected. If this was a mistake, contact to support@example.com",
+  lineduration: 3600*24*30 // 30 days
 }
 
 // --- End of config ---
@@ -130,7 +131,7 @@ irc.on("connect", _ => {
 irc.ban = (nick, host) => {
   const date = Math.floor(Date.now() / 1000);
   console.log("----", "G-Lining", nick, "from", host);
-  irc.write(`GLINE *!*@${host} 99999999 :${config.killreason}\r\n`);
+  irc.write(`GLINE *!*@${host} ${config.lineduration} :${config.killreason}\r\n`);
   irc.write(`KILL ${nick} :${config.killreason}\r\n`);
   db.prepare("INSERT OR IGNORE INTO bots VALUES (?, ?, ?);")
     .run(nick, host, date);
