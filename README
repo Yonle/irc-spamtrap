@@ -1,0 +1,30 @@
+
+IRC spamtrap
+------------
+Spam Trapper.
+
+
+Requirement
+-----------
+* IRC Server running with ngircd
+* Oper
+* NodeJS
+* (Lib)SQLite3 
+
+
+Installation
+------------
+* Clone this repository
+    $ git clone https://github.com/Yonle/irc-spamtrap
+
+* Edit spamtrap.js and follow the instructions on the comments.
+
+
+SQLite3 Schema
+--------------
+CREATE TABLE IF NOT EXISTS bots (nick TEXT, host TEXT, date INT, UNIQUE(host));
+
+
+License
+-------
+Licensed under BSD-3-Clause.
