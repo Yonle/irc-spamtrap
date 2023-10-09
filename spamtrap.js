@@ -152,9 +152,8 @@ irc.on("data", data => {
     const chan = data.slice(8, (data.length-msg.length)-4);
     const argv = msg.split(" ");
 
-    if (chan === config.nick || data.toLowerCase().includes("supernet") || data.toLowerCase().includes("blowjobs") || data.toLowerCase().includes("superbowl") || msg.includes(config.nick)) {
-      irc.write(`WHOIS ${nick} ${nick}\r\n`);
-    }
+    if (!(chan === config.nick || junkyards.includes(chan))) return;
+    irc.write(`WHOIS ${nick} ${nick}\r\n`);
   }
 
   if (data.startsWith("378")) {
