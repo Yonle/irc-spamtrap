@@ -19,7 +19,7 @@ const config = {
   // The bot requires to be an oper in order to work.
   autorun: [
     `OPER user name`,
-    `MODE Spamtrap_ +i`
+    `MODE Spamtrap_ +iI`
   ],
 
   // How many trap channels?
